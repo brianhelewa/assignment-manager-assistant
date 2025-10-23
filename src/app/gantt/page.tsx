@@ -43,10 +43,10 @@ export default function GanttPage() {
                   days - 1,
                   Math.max(
                     0,
-                    Math.floor( (new Date(t.dueAt).getTime() - start.getTime()) / 86_400_000 )
+                    Math.floor((new Date(t.dueAt).getTime() - start.getTime()) / 86_400_000)
                   )
                 )
-              : null            
+              : null                       
               return (
                 <tr key={t.id}>
                   <td className="border px-2 py-1">{t.title}</td>
