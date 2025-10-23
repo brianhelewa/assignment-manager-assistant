@@ -1,0 +1,25 @@
+
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Next.js
+.next/
+out/
+*.log
+*.pid
+*.seed
+*.seed.js
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Misc
+.DS_Store
+*.local
