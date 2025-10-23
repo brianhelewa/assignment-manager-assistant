@@ -38,13 +38,15 @@ export default function GanttPage() {
           <tbody>
             {list.map((t) => {
               const dueMs = t.dueAt ? new Date(t.dueAt as any).getTime() : null
-              const idx =
-                typeof dueMs === 'number'
-                  ? Math.min(
-                      days - 1,
-                      Math.max(0, Math.floor((dueMs - start.getTime()) / 86_400_000))
-                    )
-                  : null
+              const idx = t.dueAt
+              ? Math.min(
+                  days - 1,
+                  Math.max(
+                    0,
+                    Math.floor( (new Date(t.dueAt).getTime() - start.getTime()) / 86_400_000 )
+                  )
+                )
+              : null            
               return (
                 <tr key={t.id}>
                   <td className="border px-2 py-1">{t.title}</td>
