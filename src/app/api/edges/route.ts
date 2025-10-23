@@ -1,20 +1,19 @@
-export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
-
-import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
+
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
-    const edges = await prisma.edge.findMany({
-      select: { id: true, fromId: true, toId: true, type: true }
-    })
-    return NextResponse.json(edges)
-  } catch (e) {
-    console.error('GET /api/edges error:', e)
-    return NextResponse.json({ error: 'Failed to load edges' }, { status: 500 })
+    const tasks = await prisma.task.findMany({ orderBy: { createdAt: 'asc' } })
+    return NextResponse.json(tasks)
+  } catch (e: any) {
+    console.error('GET /api/tasks error:', e?.message, e?.stack)
+    return NextResponse.json({ error: 'Failed to load tasks' }, { status: 500 })
   }
 }
+
 
 export async function POST(req: Request) {
   try {
